@@ -4,7 +4,9 @@ An interactive map of co-star connections in Indian cinema. It ranks actors by *
 
 ## Explore
 
-The site includes a searchable ranking, a yearly remoteness chart for the current top eight actors, a film count vs. remoteness chart, and a film count vs. distinct co-stars chart. Selecting an actor in the ranking or scatterplots highlights them across the comparisons.
+The opening is a five-scene sideways story. Use the mouse wheel, arrow buttons, keyboard arrows, or a sideways swipe to move through the animated co-star network. In scene three, guess which actor is closest to the center; the next scene compares your pick with the top-ranked actor. A skip option reveals the answer without a guess.
+
+Below the story are a searchable ranking, a yearly remoteness chart for the current top eight actors, a film count vs. remoteness chart, and a film count vs. distinct co-stars chart. Selecting an actor in the ranking or scatterplots highlights them across the comparisons.
 
 ## Method
 
