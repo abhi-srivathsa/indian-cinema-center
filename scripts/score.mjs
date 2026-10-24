@@ -29,10 +29,11 @@ function score(g,source){
 const full=build(2025);
 const ranked=candidates.filter(a=>full.component[a]===full.giant).map(actor=>({actor,score:score(full,actor),films:full.counts[actor],costars:full.adj[actor].length,component:full.size})).sort((a,b)=>a.score-b.score);
 fs.writeFileSync(rankingPath,'actor\tscore\tfilms\tcostars\tcomponent\n'+ranked.map(r=>`${r.actor}\t${r.score}\t${r.films}\t${r.costars}\t${r.component}`).join('\n')+'\n');
-const top=ranked.slice(0,8).map(r=>r.actor),history=['year\tactor\tscore\tcomponent'];
+const history=['year\tactor\trank\tscore\tcomponent'];
 for(let year=1980;year<=2025;year++){
   const g=build(year);
-  for(const actor of top)if(g.counts[actor]>=5 && g.component[actor]===g.giant)history.push(`${year}\t${actor}\t${score(g,actor)}\t${g.size}`);
+  const leaders=(year===2025 ? ranked : candidates.filter(actor=>g.counts[actor]>=5 && g.component[actor]===g.giant).map(actor=>({actor,score:score(g,actor)})).sort((a,b)=>a.score-b.score)).slice(0,5);
+  leaders.forEach((entry,index)=>history.push(`${year}\t${entry.actor}\t${index+1}\t${entry.score}\t${g.size}`));
   if(year%10===0)console.log('history',year,'component',g.size);
 }
 fs.writeFileSync(historyPath,history.join('\n')+'\n');

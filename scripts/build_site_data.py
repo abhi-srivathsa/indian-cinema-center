@@ -14,7 +14,7 @@ for rank,row in enumerate(ranking,1):
 by_index={int(row['actor']):metadata['actors'][int(row['actor'])]['id'] for row in ranking}
 series=[]
 for row in history:
-    series.append({'year':int(row['year']),'id':by_index[int(row['actor'])],'score':round(float(row['score']),4)})
+    series.append({'year':int(row['year']),'id':by_index[int(row['actor'])],'rank':int(row['rank']),'score':round(float(row['score']),4)})
 source_credits=sum(1 for _ in (ROOT/'data'/'wikidata_credits.csv').open())-1
 out={'meta':{'asOf':'2026-10-23','fromYear':1960,'throughYear':2025,'films':len(metadata['films']),'actors':len(metadata['actors']),'ranked':len(actors),'component':int(ranking[0]['component']),'credits':source_credits,'source':'Wikidata Query Service'},'actors':actors,'history':series,'topIds':[a['id'] for a in actors[:8]]}
 public=ROOT/'public';public.mkdir(exist_ok=True)

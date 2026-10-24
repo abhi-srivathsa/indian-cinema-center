@@ -4,9 +4,9 @@ An interactive map of co-star connections in Indian cinema. It ranks actors by *
 
 ## Explore
 
-The opening is a five-scene sideways story. Use the mouse wheel, arrow buttons, keyboard arrows, or a sideways swipe to move through the animated co-star network. In scene three, guess which actor is closest to the center; the next scene compares your pick with the top-ranked actor. A skip option reveals the answer without a guess.
+The opening is a five-scene sideways story. Use the mouse wheel, arrow buttons, keyboard arrows, or a sideways swipe to move through the animated co-star network. Scene two defines co-star degrees and remoteness. In scene three, each incorrect guess reveals just that actor's row in the ranking; guessing #1 or pressing Skip unlocks the full list.
 
-Below the story are a searchable ranking, a yearly remoteness chart for the current top eight actors, a film count vs. remoteness chart, and a film count vs. distinct co-stars chart. Selecting an actor in the ranking or scatterplots highlights them across the comparisons.
+Below the story are a searchable ranking, a horizontally scrollable chart showing each year's five lowest-remoteness actors one decade at a time, a film count vs. remoteness chart, and a film count vs. distinct co-stars chart. Selecting an actor in the ranking or charts highlights them across the comparisons.
 
 ## Method
 
@@ -19,7 +19,7 @@ The pinned Wikidata snapshot was queried on **October 23, 2026**. The film set u
 
 Each pair of actors in the same film forms one undirected edge. Distinct co-stars are unique neighbors in this graph. Remoteness is the average breadth-first-search distance from one actor to all others in the largest connected component. The published ranking includes actors whose Wikidata citizenship is India (`P27 = Q668`) and who have at least five qualifying films. Actors of other citizenships can still be part of the graph and its paths.
 
-The yearly chart rebuilds the film graph through each year from 1980 to 2025, then scores the eight actors who rank highest in the final 2025 graph. A line starts once the actor has five films and sits in that year's largest connected group. Each year therefore has a changing comparison universe.
+The yearly chart rebuilds the film graph through each year from 1980 to 2025 and scores every eligible Indian actor with at least five films in that year's largest connected group. It plots the five lowest-remoteness actors for each year. A line enters or exits when an actor joins or leaves that year's top five. Each year therefore has a changing comparison universe.
 
 **Limits:** Wikidata's cast, film, release date, and citizenship statements are incomplete. A missing statement can omit a film or actor, or alter a score. These results measure recorded network connections, not artistic value or influence. A single film can create several links even when its cast members share no scene.
 
