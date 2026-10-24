@@ -16,8 +16,9 @@ function SectionHeading({ number: index, eyebrow, title, children }) {
   </div>;
 }
 
-// A stable sample of the ranked actors drives every scene of the opening network.
-const storyActors = [actors[0], ...actors.slice(1).filter((_, index) => index % 10 === 0).slice(0, 259)];
+// The first twelve points share a recorded film with Jackie Shroff in the pinned snapshot.
+const storyCoStarIds = ['Q3595438', 'Q2050534', 'Q9570', 'Q560163', 'Q3765029', 'Q312789', 'Q80309', 'Q469945', 'Q379604', 'Q158233', 'Q6933443', 'Q6937290'];
+const storyActors = [actors[0], ...storyCoStarIds.map(id => byId.get(id)), ...actors.slice(1).filter((_, index) => index % 10 === 0 && !storyCoStarIds.includes(actors[index + 1].id))].slice(0, 260);
 const storySteps = ['The question', 'The network', 'Your guess', 'The reveal', 'Explore'];
 const random = (seed) => { const value = Math.sin(seed * 127.1 + 31.7) * 43758.5453; return value - Math.floor(value); };
 const mix = (a, b, t) => a + (b - a) * t;
@@ -40,7 +41,7 @@ function storyPoint(actor, index, step) {
 }
 
 function StoryNetwork({ step }) {
-  const linePoints = storyActors.slice(1, 13).map((actor, index) => storyPoint(actor, index + 1, step));
+  const linePoints = storyActors.slice(1, storyCoStarIds.length + 1).map((actor, index) => storyPoint(actor, index + 1, step));
   return <div className={`story-network story-network-${step}`} aria-hidden="true">
     <svg viewBox="0 0 1100 650" preserveAspectRatio="xMidYMid meet">
       <g className="story-edges" style={{ opacity: step <= 1 ? .62 : 0 }}>
